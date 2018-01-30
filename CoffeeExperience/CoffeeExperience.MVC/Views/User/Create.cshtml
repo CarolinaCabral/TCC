@@ -1,0 +1,57 @@
+﻿@model CoffeeExperience.MVC.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Registrar-se";
+}
+<div class="container">
+    <div class="row" >
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            @using (Ajax.BeginForm("Create", "User", new AjaxOptions { OnSuccess = "Sucesso", OnBegin = "Carregando", OnComplete = "Completo", OnFailure = "Falha" }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <h2 class="white">Cadastre-se</h2>
+                
+                @Html.ValidationSummary(true, "", new { @class = "white" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label white col-md-2", })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger white" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label white col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "white" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label white col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "white" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label white col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", @onkeyup = "formataCPF(this,event)" } })
+                        @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "white" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success">Registrar-se</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

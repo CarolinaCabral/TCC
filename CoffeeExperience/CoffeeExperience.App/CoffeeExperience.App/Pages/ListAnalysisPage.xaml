@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.ListAnalysisPage"
+             xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Label Text="Lote:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}" HorizontalOptions="End" FontSize="15"></Label>
+            <Label x:Name="lblLote" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}" HorizontalOptions="Start" FontSize="15"></Label>
+        </StackLayout>
+        <Label Grid.Row="1" Text="Análises" HorizontalOptions="Center" FontSize="Large" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        <ListView ItemTapped="ListViewAnalysis_ItemTapped" VerticalOptions="FillAndExpand" Grid.Row="2" HorizontalOptions="StartAndExpand" SeparatorVisibility="None" HasUnevenRows="true" x:Name="ListViewAnalysis" Margin="2,2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="2,2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*" />
+                                    <ColumnDefinition Width="60*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33*" />
+                                    <RowDefinition Height="33*" />
+                                    <RowDefinition Height="34*" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="0" FontSize="12" Text="Código:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="0" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding Code}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="1" FontSize="12" Text="Tipo:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="1" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding TypeStr}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="2" FontSize="12" Text="Laboratório:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding Laboratory.Name}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

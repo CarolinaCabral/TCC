@@ -1,0 +1,50 @@
+﻿@model CoffeeExperience.MVC.ViewModels.QualityResultViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Resultados da Análise - @Model.AnalysisId</h2>
+
+
+<br />
+<div class="row  m-t-md">
+    <div class="col-lg-12">
+        <p>
+            @Html.Raw(Url.GerarBotaoCriarResultado(Model.AnalysisId.Value))
+        </p>
+
+        @using (Ajax.BeginForm("List", "QualityResult", new { AnalysisId = Model.AnalysisId}, new AjaxOptions { UpdateTargetId = "div-listagem-quality-" +Model.AnalysisId, OnSuccess = "SucessoListagem", OnComplete = "Completo", OnFailure = "Falha", OnBegin = "Carregando", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+        {
+            <button class="fa fa-refresh text-info pull-right refresh" title="Atualizar listagem"></button>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div id="div-listagem-quality-@Model.AnalysisId">
+</div>
+
+
+<script>
+
+     $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("List", "QualityResult", new { AnalysisId = Model.AnalysisId,})',
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        async: false,
+                        success: function (data) {
+                            $("#div-listagem-quality-@Model.AnalysisId").html(data);
+                            SucessoListagem(data);
+                        },
+                        complete: function () {
+                            Completo();
+                        },
+                        beforeSend: function () {
+                            Carregando();
+                        },
+                        error: function () {
+
+                        }
+        });
+</script>
+

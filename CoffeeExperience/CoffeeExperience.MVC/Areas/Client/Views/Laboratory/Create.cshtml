@@ -1,0 +1,72 @@
+﻿@model CoffeeExperience.MVC.ViewModels.LaboratoryViewModel
+
+@{
+    ViewBag.Title = "Cadastrar Laboratório";
+    Layout = null;
+}
+
+<h2>Cadastrar</h2>
+
+<div class="row" id="div-cadastro-laboratorio"> @*nao abrir mais de uma aba*@
+    <div class="col-lg-12">
+
+        @using (Ajax.BeginForm("Edit", "Laboratory", new AjaxOptions { OnSuccess = "SucessoCadastro", OnComplete = "Completo", OnFailure = "Falha", OnBegin = "Carregando" }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Status)
+                @Html.HiddenFor(model => model.CreationDate)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", @onkeyup = "formataCNPJ(this,event)" } })
+                        @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 pull-right">
+                        <button class="btn btn-success col-lg-12" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+     function ReparseValidation() {
+         $.validator.unobtrusive.parse("#div-cadastro-laboratorio");
+    }
+    ReparseValidation();
+
+    $(document).ready(FecharAlerta());
+</script>

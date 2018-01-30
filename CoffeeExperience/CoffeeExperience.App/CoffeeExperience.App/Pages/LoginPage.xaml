@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pag:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.LoginPage"
+              xmlns:pag="clr-namespace:CoffeeExperience.App.Pages;assembly=CoffeeExperience.App"
+             xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+    
+    <RelativeLayout x:Name="BaseLayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image Aspect="AspectFill" Source="background_login.png" 
+               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1, Constant=0}"
+						RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=0}"
+						RelativeLayout.WidthConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+						RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}">
+            ></Image>
+        <Grid RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1, Constant=0}"
+						RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=0}"
+						RelativeLayout.WidthConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+						RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>          
+            <Label Text="Email" Grid.Row="3" VerticalOptions="Fill" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}" FontSize="20"></Label>
+            <Entry x:Name="EntryEmail" Grid.Row="4" VerticalOptions="Fill" FontSize="20" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Entry>
+            <Label Text="Senha" Grid.Row="5" VerticalOptions="Fill" FontSize="20" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <Entry x:Name="EntryPassword" IsPassword="True" Grid.Row="6" VerticalOptions="Fill" FontSize="20" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Entry>
+            <Button Text="Login" x:Name="btnLogin" Grid.Row="7" VerticalOptions="Fill" Clicked="BtnLogin_Clicked" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+        </Grid>
+    </RelativeLayout>
+</pag:BasePage>

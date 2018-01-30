@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.MenuPage"
+             xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <RelativeLayout Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Image x:Name="Background" Source="background_menu.png" HeightRequest="150" Aspect="AspectFill" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1,Constant=0}">
+            </Image>
+            <Grid RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1,Constant=0}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32*" />
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="32*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="80*" />
+                    <ColumnDefinition Width="15*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1" Grid.Column="1" x:Name="LabelUserName"  TextColor="White" FontSize="12" HorizontalTextAlignment="End"/>
+                <Label Grid.Row="2" Grid.Column="1" x:Name="LabelUserEmail" TextColor="White" FontSize="12" HorizontalTextAlignment="End"/>
+                <Label Grid.Row="3" Grid.Column="1" x:Name="LabelUserLogin" TextColor="White" FontSize="12" HorizontalTextAlignment="End"/>
+            </Grid>
+        </RelativeLayout>
+        <Button Grid.Row="2"  Clicked="BtnLot_Clicked" Text="Lotes" x:Name="btnLot"  VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+        <Button Grid.Row="3"  Clicked="BtnAnalysis_Clicked" Text="Análises" x:Name="btnAnalysis" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+        <Button Grid.Row="4" Clicked="BtnLaboratory_Clicked" Text="Laboratório" x:Name="btnLaboratory" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+        <Button Grid.Row="5" Clicked="BtnFollowLot_Clicked" Text="Lotes Seguidos" x:Name="btnFollowLot" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+
+        <Image Grid.Row="7" HeightRequest="70" Source="exit" VerticalOptions="EndAndExpand" HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedExit"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </Grid>
+</ContentPage>

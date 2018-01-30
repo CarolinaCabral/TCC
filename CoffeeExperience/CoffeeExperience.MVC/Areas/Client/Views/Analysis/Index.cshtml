@@ -1,0 +1,65 @@
+﻿@model CoffeeExperience.MVC.ViewModels.AnalysisViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    var LaboratoryAndLotId = "-";
+    if (Model.LaboratoryId != null || Model.LotId != null)
+    {
+        if(Model.LaboratoryId != null)
+        {
+            LaboratoryAndLotId += "lab" + Model.LaboratoryId;
+        }
+
+        if (Model.LotId != null)
+        {
+            LaboratoryAndLotId += "lot" + Model.LotId;
+        }
+
+
+    }
+
+}
+
+<h2>Suas Análises</h2>
+
+
+<br />
+<div class="row  m-t-md">
+    <div class="col-lg-12">
+        <p>
+            @Html.Raw(Url.GerarBotaoCriarAnalise())
+        </p>
+
+        @using (Ajax.BeginForm("List", "Analysis", new { LaboratoryId = Model.LaboratoryId, LotId = Model.LotId }, new AjaxOptions { UpdateTargetId = "div-listagem-analise-" +LaboratoryAndLotId, OnSuccess = "SucessoListagem", OnComplete = "Completo", OnFailure = "Falha", OnBegin = "Carregando", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+        {
+            <button class="fa fa-refresh text-info pull-right refresh" title="Atualizar listagem"></button>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div id="div-listagem-analise-@LaboratoryAndLotId">
+</div>
+
+
+<script>    
+     $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("List", "Analysis", new { LotId = Model.LotId, LaboratoryId = Model.LaboratoryId })',
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        async: false,
+                        success: function (data) {
+                            $("#div-listagem-analise-@LaboratoryAndLotId").html(data);
+                            SucessoListagem(data);
+                        },
+                        complete: function () {
+                            Completo();
+                        },
+                        beforeSend: function () {
+                            Carregando();
+                        },
+                        error: function () {
+
+                        }
+        });
+</script>
+

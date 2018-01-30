@@ -1,0 +1,123 @@
+﻿@model IEnumerable<CoffeeExperience.MVC.ViewModels.QualityResultViewModel>
+
+@{
+    Layout = null;
+}
+
+<div class="row m-t-md">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table id="tableQuality" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            Observação
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            Laboratório
+                        </th>
+                        <th>
+                            Editar
+                        </th>
+                        <th>
+                            Excluir
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Observation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeStr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Analysis.Laboratory.Name)
+                            </td>
+
+                            <td>
+                                <a onclick="EditQuality(@item.Id)" href="#"><img src="~/Icons/edit.png" title="Editar" class="img-responsive" width="50" height="50" /></a>
+                            </td>
+                            <td>
+                                <a onclick="DeleteQuality(@item.Id)" href="#"><img src="~/Icons/delete.png" title="Excluir" class="img-responsive" width="50" height="50" /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function EditQuality(data) {
+        openTab('Editar resultado de Qualidade - Análise - ' + data, '@Url.Action("CreateOrEdit", "QualityResult")?QualityResultId=' + data, 'acao-editar-quality-' + data);
+    }
+    function ListQualityResult(data)
+    {
+         openTab('Resulados da Análise - ' + data , '@Url.Action("Index", "QualityResult")/' + data, 'acao-resultado-analise-' + data);
+    }
+    function DeleteQuality(data)
+    {
+        swal({
+            title: 'Você tem certeza?',
+            text: "Você não será capaz de recuperar este resultado de qualidade!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, eu quero excluir!',
+            cancelButtonText: 'Não, cancela por favor!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(function (data2) {
+             $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Delete", "QualityResult")/' + data,
+                        data: data,
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        async: true,
+                        success: function (data2) {
+                            SucessoCadastro(data2);
+                        },
+                        complete: function () {
+                            Completo();
+                        },
+                        beforeSend: function () {
+                            Carregando();
+                        },
+                        error: function () {
+                            Falha();
+                        }
+                    });
+        }, function (dismiss) {
+            if (dismiss === 'cancel') {
+                swal({
+                    title: 'Cancelado',
+                    type: 'error'
+                }
+                )
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        $('#tableQuality').DataTable();
+    });
+
+</script>
+

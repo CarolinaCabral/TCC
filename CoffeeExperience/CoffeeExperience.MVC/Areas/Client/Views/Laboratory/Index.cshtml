@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Seus Laboratórios</h2>
+
+
+<br />
+<div class="row  m-t-md" id="index-laboratorios">
+    <div class="col-lg-12">
+        <p>
+            @Html.Raw(Url.GerarBotaoCriarLaboratorio())
+            
+        </p>
+
+        @using (Ajax.BeginForm("List", "Laboratory", new AjaxOptions { UpdateTargetId = "div-listagem-laboratory", OnSuccess = "SucessoListagem", OnComplete = "Completo", OnFailure = "Falha", OnBegin = "Carregando", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+        {
+            <button class="fa fa-refresh text-info pull-right refresh" title="Atualizar listagem"></button>
+        }
+        <div class="clearfix"></div>
+       
+    </div>
+</div>
+    <div id="div-listagem-laboratory">
+    </div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+     $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("List", "Laboratory")',
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        async: true,
+                        success: function (data) {
+                            $("#div-listagem-laboratory").html(data);
+                            SucessoListagem(data);
+                        },
+                        complete: function () {
+                            Completo();
+                        },
+                        beforeSend: function () {
+                            Carregando();
+                        },
+                        error: function () {
+                            Falha();
+                        }
+        });
+    });
+    
+</script>
+
+
+
+

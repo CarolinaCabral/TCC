@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.LaboratoryPage"
+             xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10*"/>
+      <RowDefinition Height="10*"/>
+      <RowDefinition Height="10*"/>
+      <RowDefinition Height="10*"/>
+      <RowDefinition Height="5*"/>
+      <RowDefinition Height="55*"/>
+    </Grid.RowDefinitions>
+    <Button Text="Scanner" Clicked="BtnScan_Clicked" x:Name="btnScan" Grid.Row="0" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+    <StackLayout Orientation="Horizontal" Grid.Row="1">
+      <Label Text="Nome do Laboratório:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+      <Label x:Name="lblNome" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Grid.Row="2">
+      <Label Text="Cidade:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+      <Label x:Name="lblCidade" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Grid.Row="3">
+      <Label Text="CNPJ:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+      <Label x:Name="lblCnpj" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" Grid.Row="4">
+      <Label Text="Código:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+      <Label x:Name="lblCodigo" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+    </StackLayout>
+
+    
+  </Grid>
+</ContentPage>

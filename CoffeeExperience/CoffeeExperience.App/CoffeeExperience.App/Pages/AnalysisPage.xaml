@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.AnalysisPage"
+             xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+        <Button Text="Scanner" Clicked="BtnScan_Clicked" x:Name="btnScan" Grid.Row="0" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+        <StackLayout Orientation="Horizontal" Grid.Row="1">
+            <Label Text="Código da análise:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <Label x:Name="lblCod" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="2">
+            <Label Text="Laboratório:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <Label x:Name="lblLaboratorio" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="3">
+            <Label Text="Lote:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <Label x:Name="lblLote" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="4">
+            <Label Text="Tipo:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <Label x:Name="lblTipo" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        </StackLayout>
+        <Label Grid.Row="5" Text="Lista de Qualidade" HorizontalOptions="Center" FontSize="Large" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+        <ListView VerticalOptions="FillAndExpand" Grid.Row="6" HorizontalOptions="StartAndExpand" SeparatorVisibility="None" HasUnevenRows="true" x:Name="ListViewQuality" Margin="2,2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="2,2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*" />
+                                    <ColumnDefinition Width="60*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33*" />
+                                    <RowDefinition Height="33*" />
+                                    <RowDefinition Height="34*" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="0" FontSize="12" Text="Tipo:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="0" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding TypeStr}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="1" FontSize="12" Text="Observação:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="1" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding Observation}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="0" HorizontalOptions="EndAndExpand" Grid.Row="2" FontSize="12" Text="Data:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+                                <Label Grid.Column="1" HorizontalOptions="StartAndExpand" Grid.Row="2" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding CreationDateStr}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                </Label>
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+    </Grid>
+</ContentPage>

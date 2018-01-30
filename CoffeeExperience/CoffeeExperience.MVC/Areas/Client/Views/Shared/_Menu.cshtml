@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "_Menu";
+    Layout = null;
+}
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <i class="fa fa-user" style="font-size:26px;"></i>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase">@ViewBag.User.Name</span>
+                <div><small class="text-muted"></small></div>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <small class="text-muted">Último acesso:<br />@ViewBag.User.LastAccess<b class="caret"></b></small>
+                    </a>
+                    <ul class="dropdown-menu animated flipInX m-t-xs">
+                        <li><a class="linkTab" name="Trocar senha" data-tab-id="trocarsenha" href="@Url.Action("TrocarSenha", "Home")">Trocar Senha</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("LogOut", "HomeClient")">Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            @Html.Raw(Url.GerarMenu())
+        </ul>
+    </div>
+</aside>
+

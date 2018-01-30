@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pag:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoffeeExperience.App.Pages.FollowingLotPage"
+            xmlns:pag="clr-namespace:CoffeeExperience.App.Pages;assembly=CoffeeExperience.App"
+            xmlns:ce="clr-namespace:CoffeeExperience.App;assembly=CoffeeExperience.App">
+    <AbsoluteLayout x:Name="BaseLayout" View.VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="75*"/>
+            </Grid.RowDefinitions>
+            <Button Text="Beepar lote para seguir" Clicked="BtnScan_Clicked" x:Name="btnScan" Grid.Row="0" VerticalOptions="Fill" TextColor="White" BackgroundColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Button>
+
+            <Label Grid.Row="2" Text="Lotes que eu sigo" HorizontalOptions="Center" FontSize="Large" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}"></Label>
+            <ListView VerticalOptions="FillAndExpand" Grid.Row="3" HorizontalOptions="StartAndExpand" SeparatorVisibility="None" HasUnevenRows="true" x:Name="ListViewLots" Margin="2,2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="2,2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="20*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100*" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Column="0" VerticalOptions="CenterAndExpand"  HorizontalOptions="EndAndExpand" Grid.Row="0" FontSize="12" Text="Codigo do Lote:" FontAttributes="Bold" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                    </Label>
+                                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  HorizontalOptions="StartAndExpand" Grid.Row="0" FontSize="12" LineBreakMode="TailTruncation" Text="{Binding}" TextColor="{x:Static ce:Constants+Colors.FontColorBrown}">
+                                    </Label>
+                                    <Image  Grid.Column="2" HeightRequest="70" Source="cancel" VerticalOptions="CenterAndExpand" HorizontalOptions="Start">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedUnfollow" CommandParameter="{Binding}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </AbsoluteLayout>
+</pag:BasePage>

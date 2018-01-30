@@ -1,0 +1,42 @@
+﻿@model CoffeeExperience.MVC.ViewModels.LoginViewModel
+@{
+    
+}
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            @using (Ajax.BeginForm("Entrar", "Login", new AjaxOptions { OnSuccess = "Sucesso", OnBegin = "Carregando", OnComplete = "Completo", OnFailure = "Falha" }, new { @class = "form-signin", @style = "margin-bottom: 0px !important;" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <fieldset>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", placeholder = "E-mail" }  )
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color:white" })
+                        
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control input-lg", placeholder = "Senha" } )
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color:white" })
+                       
+                    </div>
+
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Entrar">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <a href="@Url.Action("Create","User")" class="btn btn-lg btn-warning btn-block">Registrar</a>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready($("#footer").hide());
+</script>
+

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@("NameApp".Config())</title>
+    <link rel="shortcut icon" href="~/Icons/CoffeExperienceIcon.png">
+
+    <link href="~/ContentHome/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/ContentHome/css/business-casual.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("/Content/Layout/vendor/sweetalert/sweetalert2/sweetalert2.min.css")" />
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+   
+    <script src="@Url.Content("/Content/Layout/scripts/scripts.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.custom.pt-br.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/methods_pt.js")"></script>
+    <script src="~/Scripts/Mascara.js"></script>
+    <script src="~/Content/Layout/scripts/scripts.js"></script>
+    <script type="text/javascript" src="@Url.Content("/Content/Layout/vendor/sweetalert/sweetalert2/sweetalert2.min.js")"></script>
+</head>
+<body>
+    <div class="brand">Coffee Experience</div>
+    <div class="address-bar">Alterosa | Alfenas | Machado</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="index.html">Coffee Experience</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Inicio","Index","Home")
+                    </li>
+                    <li>
+                        <a href="#divsobre" class="scroll">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="#divcontato" class="scroll">Contato</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Login", "Index", "Login")
+
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    @RenderBody();
+    
+    
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 800);
+   });
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model CoffeeExperience.MVC.ViewModels.ProductViewModel
+@{
+    Layout = null;
+}
+
+<h2>Produtos</h2>
+<br />
+<div class="row  m-t-md">
+    <div class="col-lg-12">
+        <p>
+            @Html.Raw(Url.GerarBotaoCriarProduto(Model.LotCode.Trim()))
+        </p>
+
+        @using (Ajax.BeginForm("List", "Product", new AjaxOptions { UpdateTargetId = "div-listagem-product-bylot-"+Model.LotCode, OnSuccess = "SucessoListagem", OnComplete = "Completo", OnFailure = "Falha", OnBegin = "Carregando", InsertionMode = InsertionMode.Replace }, new { @class = "form-horizontal", @style = "margin-bottom: 0px !important;" }))
+        {
+            @Html.HiddenFor(model => model.LotCode)
+            <button class="fa fa-refresh text-info pull-right refresh" title="Atualizar listagem"></button>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<div id="div-listagem-product-bylot-@Model.LotCode">
+</div>
+
+<script>
+       $(document).ready(FecharAlerta());
+       $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("List", "Product", new { LotCode = Model.LotCode })',
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        async: false,
+                        success: function (data) {
+                            $("#div-listagem-product-bylot-@Model.LotCode").html(data);
+                            SucessoListagem(data);
+                        },
+                        complete: function () {
+                            Completo();
+                        },
+                        beforeSend: function () {
+                            Carregando();
+                        },
+                        error: function () {
+
+                        }
+        });
+</script>
+
+
